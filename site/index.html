@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>My Docs</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Predict Contracts";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href=".">Predict Contracts</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">Обзор проекта</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">Основные возможности:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">Архитектура системы</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">Основные компоненты</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">Структура проекта</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#contracts">📁 contracts/</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_6">Основные контракты:</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_7">Математические модули:</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_8">Утилиты:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#wrappers">📁 wrappers/</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#scripts">📁 scripts/</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#factory">Factory скрипты:</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#event">Event скрипты:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tests">📁 tests/</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#utils">📁 utils/</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_9">Детальное описание компонентов</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-factory-contract">1. Factory Contract</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-event-contract">2. Event Contract</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-eventwallet-contract">3. EventWallet Contract</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-lmsr">4. Математический модуль (LMSR)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#calc_token_priceb-q1-q2">calc_token_price(b, q1, q2)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#calc_coins_for_usdtusdt_amount-b-q1-q2">calc_coins_for_usdt(usdt_amount, b, q1, q2)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#calc_usdt_for_coinstoken_amount-b-q1-q2">calc_usdt_for_coins(token_amount, b, q1, q2)</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_10">Взаимодействие с системой</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1">1. Создание события</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2">2. Добавление ликвидности</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3">3. Покупка токенов</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4">4. Продажа токенов</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5">5. Определение победителя</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_11">Система комиссий</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_12">Структура комиссий:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_13">Распределение комиссий:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_14">Безопасность и ограничения</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_15">Проверки безопасности:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_16">Коды ошибок:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_17">Утилиты и вспомогательные функции</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#nanousdt">nanoUSDT конвертация:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_18">Константы:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_19">Тестирование</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_20">Запуск тестов:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_21">Структура тестов:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_22">Пример теста:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_23">Развертывание</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_24">Запуск скриптов:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_25">Доступные скрипты:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_26">Заключение</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_27">Ключевые преимущества:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_28">Возможности расширения:</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Predict Contracts</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="predict-contracts">Predict Contracts</h1>
+<h2 id="_1">Обзор проекта</h2>
+<p><strong>Predict Contracts</strong> - это система смарт-контрактов на блокчейне TON для создания и управления предсказательными рынками. Пользователи могут делать ставки на исходы событий, покупая токены "YES" или "NO", используя USDT в качестве базовой валюты.</p>
+<h3 id="_2">Основные возможности:</h3>
+<ul>
+<li>Создание предсказательных событий через Factory контракт</li>
+<li>Покупка/продажа токенов YES/NO за USDT</li>
+<li>Автоматическое ценообразование на основе LMSR (Logarithmic Market Scoring Rule)</li>
+<li>Управление ликвидностью</li>
+<li>Система комиссий</li>
+<li>Определение победителя события</li>
+</ul>
+<h2 id="_3">Архитектура системы</h2>
+<h3 id="_4">Основные компоненты</h3>
+<pre><code>┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Factory       │    │     Event       │    │  EventWallet    │
+│   Contract      │───▶│   Contract      │───▶│   Contract      │
+│                 │    │                 │    │                 │
+│ - Создает       │    │ - Управляет     │    │ - Хранит токены │
+│   события       │    │   торговлей     │    │   пользователя  │
+│ - Настройки     │    │ - LMSR цены     │    │ - Покупка/продажа│
+│   комиссий      │    │ - Ликвидность   │    │ - Передачи      │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+         │                       │                       │
+         │                       │                       │
+         ▼                       ▼                       ▼
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   USDT Minter   │    │   Math Module   │    │   Utils &amp;       │
+│   (Jetton)      │    │   (LMSR)        │    │   Constants     │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+</code></pre>
+<h2 id="_5">Структура проекта</h2>
+<h3 id="contracts">📁 contracts/</h3>
+<p>Содержит исходный код смарт-контрактов на FunC:</p>
+<h4 id="_6">Основные контракты:</h4>
+<ul>
+<li><strong><code>factory.fc</code></strong> - Фабрика для создания событий</li>
+<li><strong><code>event.fc</code></strong> - Основной контракт события</li>
+<li><strong><code>event-wallet.fc</code></strong> - Кошелек для токенов пользователя</li>
+</ul>
+<h4 id="_7">Математические модули:</h4>
+<ul>
+<li><strong><code>math/predict-math-core.fc</code></strong> - Ядро LMSR алгоритма</li>
+<li><strong><code>math/predict-math.fc</code></strong> - Высокоуровневые математические функции, использующие контекст контракта (c4)</li>
+</ul>
+<h4 id="_8">Утилиты:</h4>
+<ul>
+<li><strong><code>utils/</code></strong> - Вспомогательные функции</li>
+<li><strong><code>op-codes.fc</code></strong> - Коды операций</li>
+<li><strong><code>errors.fc</code></strong> - Коды ошибок</li>
+<li><strong><code>storage.fc</code></strong> - Структуры данных</li>
+</ul>
+<h3 id="wrappers">📁 wrappers/</h3>
+<p>TypeScript обертки для взаимодействия с контрактами:</p>
+<ul>
+<li><strong><code>Factory.ts</code></strong> - Обертка для Factory контракта</li>
+<li><strong><code>Event.ts</code></strong> - Обертка для Event контракта  </li>
+<li><strong><code>EventWallet.ts</code></strong> - Обертка для EventWallet контракта</li>
+<li><strong><code>Math.ts</code></strong> - Обертка для математических функций</li>
+</ul>
+<h3 id="scripts">📁 scripts/</h3>
+<p>Скрипты для развертывания и взаимодействия:</p>
+<h4 id="factory">Factory скрипты:</h4>
+<ul>
+<li><strong><code>deployFactory.ts</code></strong> - Развертывание фабрики</li>
+<li><strong><code>deployEvent.ts</code></strong> - Создание нового события</li>
+<li><strong><code>setEnable.ts</code></strong> - Включение/отключение фабрики</li>
+</ul>
+<h4 id="event">Event скрипты:</h4>
+<ul>
+<li><strong><code>addLiquidity.ts</code></strong> - Добавление ликвидности</li>
+<li><strong><code>withdrawLiquidity.ts</code></strong> - Вывод ликвидности</li>
+<li><strong><code>sendBuyStock.ts</code></strong> - Покупка токенов</li>
+<li><strong><code>sendSellStock.ts</code></strong> - Продажа токенов</li>
+<li><strong><code>setEnableTrading.ts</code></strong> - Включение торговли</li>
+<li><strong><code>defineWinner.ts</code></strong> - Определение победителя</li>
+<li><strong><code>getPredictData.ts</code></strong> - Получение данных события</li>
+</ul>
+<h3 id="tests">📁 tests/</h3>
+<p>Тесты для всех компонентов:</p>
+<ul>
+<li><strong><code>Predict.spec.ts</code></strong> - Основные тесты системы</li>
+<li><strong><code>Math.spec.ts</code></strong> - Тесты математических функций</li>
+</ul>
+<h3 id="utils">📁 utils/</h3>
+<p>Утилиты и константы:</p>
+<ul>
+<li><strong><code>nanoUSDT.ts</code></strong> - Конвертация USDT в nanoUSDT и обратно</li>
+<li><strong><code>constants.ts</code></strong> - Константы проекта</li>
+<li><strong><code>crc32.ts</code></strong> - CRC32 хеширование</li>
+<li><strong><code>sha256.ts</code></strong> - SHA256 хеширование</li>
+<li><strong><code>tokenMetadata.ts</code></strong> - Метаданные токенов</li>
+</ul>
+<h2 id="_9">Детальное описание компонентов</h2>
+<h3 id="1-factory-contract">1. Factory Contract</h3>
+<p><strong>Назначение</strong>: Центральный контракт для создания и управления событиями.</p>
+<p><strong>Основные функции</strong>:
+- Создание новых событий
+- Управление настройками комиссий
+- Включение/отключение системы</p>
+<p><strong>Ключевые данные</strong>:</p>
+<pre><code class="language-func">global int      ctx_seed;                    // Seed для генерации адресов
+global int      ctx_is_enabled;              // Включена ли фабрика
+global slice    ctx_admin;                   // Адрес администратора
+global slice    ctx_fee_address;             // Адрес для комиссий
+global int      ctx_buy_fee_numerator;       // Числитель комиссии за покупку
+global int      ctx_sell_fee_numerator;      // Числитель комиссии за продажу
+global int      ctx_trade_fee_denominator;   // Знаменатель комиссий
+global cell     ctx_event_code;              // Код контракта события
+global cell     ctx_wallet_code;             // Код кошелька токенов
+</code></pre>
+<p><strong>Основные операции</strong>:
+- <code>deploy_event</code> - Создание нового события
+- <code>enable_factory</code> - Включение/отключение фабрики</p>
+<h3 id="2-event-contract">2. Event Contract</h3>
+<p><strong>Назначение</strong>: Управление конкретным предсказательным событием.</p>
+<p><strong>Основные функции</strong>:
+- Торговля токенами YES/NO
+- Управление ликвидностью
+- Расчет цен по LMSR
+- Определение победителя</p>
+<p><strong>Ключевые данные</strong>:</p>
+<pre><code class="language-func">global int ctx_initial_liq;        // Начальная ликвидность
+global int ctx_current_liq;        // Текущая ликвидность
+global int ctx_q1_supply;          // Количество токенов YES
+global int ctx_q2_supply;          // Количество токенов NO
+global int ctx_winner;             // Победитель (если определен)
+global int ctx_trading_enabled;    // Включена ли торговля
+</code></pre>
+<p><strong>Основные операции</strong>:
+- <code>buy</code> - Покупка токенов
+- <code>sell</code> - Продажа токенов
+- <code>add_liquidity</code> - Добавление ликвидности
+- <code>withdraw_liquidity</code> - Вывод ликвидности
+- <code>select_winner</code> - Определение победителя</p>
+<h3 id="3-eventwallet-contract">3. EventWallet Contract</h3>
+<p><strong>Назначение</strong>: Кошелек пользователя для хранения токенов события.</p>
+<p><strong>Основные функции</strong>:
+- Хранение токенов YES/NO пользователя
+- Обработка переводов токенов
+- Продажа токенов обратно в событие</p>
+<p><strong>Ключевые данные</strong>:</p>
+<pre><code class="language-func">int yes_or_no;                    // Тип токена (YES/NO)
+int balance;                      // Баланс токенов
+slice owner_address;              // Адрес владельца
+slice jetton_master_address;      // Адрес мастер-контракта
+</code></pre>
+<h3 id="4-lmsr">4. Математический модуль (LMSR)</h3>
+<p><strong>Logarithmic Market Scoring Rule</strong> - алгоритм для автоматического ценообразования.</p>
+<p><strong>Основные функции</strong>:</p>
+<h4 id="calc_token_priceb-q1-q2"><code>calc_token_price(b, q1, q2)</code></h4>
+<p>Расчет текущей цены токена:</p>
+<pre><code>price = exp(q1/b) / (exp(q1/b) + exp(q2/b))
+</code></pre>
+<h4 id="calc_coins_for_usdtusdt_amount-b-q1-q2"><code>calc_coins_for_usdt(usdt_amount, b, q1, q2)</code></h4>
+<p>Расчет количества токенов за USDT:</p>
+<pre><code>coins = b * ln(exp(usdt/b) + exp((q2-q1)/b) * (exp(usdt/b) - 1))
+</code></pre>
+<h4 id="calc_usdt_for_coinstoken_amount-b-q1-q2"><code>calc_usdt_for_coins(token_amount, b, q1, q2)</code></h4>
+<p>Расчет USDT за токены (обратная операция).</p>
+<h2 id="_10">Взаимодействие с системой</h2>
+<h3 id="1">1. Создание события</h3>
+<pre><code class="language-typescript">// 1. Развертывание фабрики
+const factory = Factory.createFromConfig({
+    admin: adminAddress,
+    feeAddress: feeAddress,
+    buyFeeNumerator: 1,
+    sellFeeNumerator: 1,
+    feeDenominator: 100,
+    isEnabled: true,
+    // ... другие параметры
+}, factoryCode);
+
+// 2. Создание события
+await factory.sendDeployEvent(sender, {
+    name: &quot;Bitcoin price &gt; $100k by 2024&quot;,
+    description: &quot;Will Bitcoin reach $100,000 by end of 2024?&quot;,
+    extraMetadata: {}
+});
+</code></pre>
+<h3 id="2">2. Добавление ликвидности</h3>
+<pre><code class="language-typescript">// Администратор добавляет начальную ликвидность
+await event.sendAddLiquidity(sender, {
+    liquidityAmount: toNanoUSDT(&quot;1000&quot;) // 1000 USDT
+}, usdtMinterAddress);
+</code></pre>
+<h3 id="3">3. Покупка токенов</h3>
+<pre><code class="language-typescript">// Пользователь покупает токены YES
+await event.sendBuy(sender, {
+    yesOrNo: true,                    // YES токены
+    usdtAmount: toNanoUSDT(&quot;100&quot;),    // 100 USDT
+    minReceive: 0n,                   // Минимальное количество токенов
+}, usdtMinterAddress);
+</code></pre>
+<h3 id="4">4. Продажа токенов</h3>
+<pre><code class="language-typescript">// Получение кошелька пользователя
+const wallet = await event.getUserWallet(provider, userAddress, true);
+
+// Продажа токенов
+await wallet.sendSellCoins(sender, {
+    amount: 1000n,        // Количество токенов
+    minReceive: 0n,       // Минимальная сумма USDT
+});
+</code></pre>
+<h3 id="5">5. Определение победителя</h3>
+<pre><code class="language-typescript">// Администратор определяет победителя
+await event.sendSelectWinner(sender, {
+    yesOrNo: true  // YES выиграло
+});
+</code></pre>
+<h2 id="_11">Система комиссий</h2>
+<h3 id="_12">Структура комиссий:</h3>
+<ul>
+<li><strong>Комиссия за покупку</strong>: <code>buyFeeNumerator / feeDenominator</code></li>
+<li><strong>Комиссия за продажу</strong>: <code>sellFeeNumerator / feeDenominator</code></li>
+<li><strong>По умолчанию</strong>: 1% (1/100)</li>
+</ul>
+<h3 id="_13">Распределение комиссий:</h3>
+<ul>
+<li>Комиссии отправляются на <code>feeAddress</code></li>
+<li>Комиссии вычитаются из суммы операции</li>
+<li>Остаток идет на торговлю</li>
+</ul>
+<h2 id="_14">Безопасность и ограничения</h2>
+<h3 id="_15">Проверки безопасности:</h3>
+<ul>
+<li>Только администратор может управлять системой</li>
+<li>Торговля отключена до добавления ликвидности</li>
+<li>Проверка минимальных сумм</li>
+<li>Защита от переполнения</li>
+</ul>
+<h3 id="_16">Коды ошибок:</h3>
+<ul>
+<li><code>707</code> - Ошибка проскальзывания</li>
+<li><code>708</code> - Слишком много токенов для покупки</li>
+<li><code>711</code> - Торговля отключена</li>
+<li><code>715</code> - Не администратор</li>
+<li><code>717</code> - Победитель уже определен</li>
+<li><code>801</code> - Фабрика отключена</li>
+</ul>
+<h2 id="_17">Утилиты и вспомогательные функции</h2>
+<h3 id="nanousdt">nanoUSDT конвертация:</h3>
+<pre><code class="language-typescript">// Конвертация USDT в nanoUSDT (1 USDT = 1,000,000 nanoUSDT)
+const nanoUSDT = toNanoUSDT(&quot;100.5&quot;);  // 100500000n
+
+// Обратная конвертация
+const usdt = fromNanoUSDT(100500000n); // 100.5
+</code></pre>
+<h3 id="_18">Константы:</h3>
+<pre><code class="language-typescript">export const Constants = {
+    EventDeploymentGas: toNano('0.05'),  // Газ для развертывания события
+    CoinBuyGas: toNano('0.08'),          // Газ для покупки
+    CoinSellGas: toNano('0.08'),         // Газ для продажи
+};
+</code></pre>
+<h2 id="_19">Тестирование</h2>
+<h3 id="_20">Запуск тестов:</h3>
+<pre><code class="language-bash">npm test
+# или
+yarn test
+</code></pre>
+<h3 id="_21">Структура тестов:</h3>
+<ul>
+<li><strong>Predict.spec.ts</strong> - Интеграционные тесты всей системы</li>
+<li><strong>Math.spec.ts</strong> - Тесты математических функций</li>
+</ul>
+<h3 id="_22">Пример теста:</h3>
+<pre><code class="language-typescript">it('should allow buying and selling tokens', async () =&gt; {
+    // Добавление ликвидности
+    await event.sendAddLiquidity(deployer.getSender(), {
+        liquidityAmount: toNanoUSDT(&quot;1000&quot;)
+    }, USDTMinter.address);
+
+    // Покупка токенов
+    await event.sendBuy(trader.getSender(), {
+        yesOrNo: true,
+        usdtAmount: toNanoUSDT(&quot;100&quot;),
+        minReceive: 0n
+    }, USDTMinter.address);
+
+    // Проверка результата
+    const wallet = await event.getUserWallet(provider, trader.address, true);
+    const balance = (await wallet.getData()).balance;
+    expect(balance).toBeGreaterThan(0n);
+});
+</code></pre>
+<h2 id="_23">Развертывание</h2>
+<h3 id="_24">Запуск скриптов:</h3>
+<pre><code class="language-bash">npm run start
+# или
+yarn start
+</code></pre>
+<h3 id="_25">Доступные скрипты:</h3>
+<ul>
+<li><code>deployFactory</code> - Развертывание фабрики</li>
+<li><code>deployEvent</code> - Создание события</li>
+<li><code>addLiquidity</code> - Добавление ликвидности</li>
+<li><code>sendBuyStock</code> - Покупка токенов</li>
+<li><code>sendSellStock</code> - Продажа токенов</li>
+<li><code>setEnableTrading</code> - Управление торговлей</li>
+<li><code>defineWinner</code> - Определение победителя</li>
+</ul>
+<h2 id="_26">Заключение</h2>
+<p>Система Predict Contracts предоставляет полнофункциональную платформу для создания предсказательных рынков на блокчейне TON. Использование LMSR алгоритма обеспечивает справедливое ценообразование, а модульная архитектура позволяет легко расширять функциональность.</p>
+<h3 id="_27">Ключевые преимущества:</h3>
+<ul>
+<li>✅ Автоматическое ценообразование</li>
+<li>✅ Справедливое распределение рисков</li>
+<li>✅ Низкие комиссии</li>
+<li>✅ Прозрачность операций</li>
+<li>✅ Децентрализованное управление</li>
+<li>✅ Масштабируемость</li>
+</ul>
+<h3 id="_28">Возможности расширения:</h3>
+<ul>
+<li>Поддержка множественных исходов</li>
+<li>Реферальная система</li>
+<li>Автоматическое определение победителей</li>
+<li>Торговля через другие токены, не только USDT</li>
+</ul>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.5.3
+Build Date UTC : 2025-09-13 00:34:15.464899+00:00
+-->
