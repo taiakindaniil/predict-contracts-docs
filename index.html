@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" /><meta name="author" content="Daniel Taiakin" />
       <link rel="shortcut icon" href="img/favicon.ico" />
-    <title>My Docs</title>
+    <title>Predict Contracts</title>
     <link rel="stylesheet" href="css/theme.css" />
     <link rel="stylesheet" href="css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -30,7 +30,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href="." class="icon icon-home"> My Docs
+          <a href="." class="icon icon-home"> Predict Contracts
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -40,7 +40,7 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href=".">Predict Contracts</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Predict Contracts</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#_1">Обзор проекта</a>
         <ul>
@@ -169,6 +169,26 @@
     </ul>
                 </li>
               </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="1_%D0%93%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F/">1 Главная</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="2_%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0_%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0/">2 Структура проекта</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="3_%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5_%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D0%BE%D0%B2/">3 Описание компонентов</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="4_%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5/">4 Тестирование</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="5_%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D0%B5/">5 Взаимодействие</a>
+                </li>
+              </ul>
       </div>
     </div>
     </nav>
@@ -176,7 +196,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href=".">My Docs</a>
+          <a href=".">Predict Contracts</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -206,7 +226,7 @@
 </ul>
 <h2 id="_3">Архитектура системы</h2>
 <h3 id="_4">Основные компоненты</h3>
-<pre><code>┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+<div class="codehilite"><pre><span></span><code>┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
 │   Factory       │    │     Event       │    │  EventWallet    │
 │   Contract      │───▶│   Contract      │───▶│   Contract      │
 │                 │    │                 │    │                 │
@@ -222,7 +242,8 @@
 │   USDT Minter   │    │   Math Module   │    │   Utils &amp;       │
 │   (Jetton)      │    │   (LMSR)        │    │   Constants     │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
-</code></pre>
+</code></pre></div>
+
 <h2 id="_5">Структура проекта</h2>
 <h3 id="contracts">📁 contracts/</h3>
 <p>Содержит исходный код смарт-контрактов на FunC:</p>
@@ -293,16 +314,17 @@
 - Управление настройками комиссий
 - Включение/отключение системы</p>
 <p><strong>Ключевые данные</strong>:</p>
-<pre><code class="language-func">global int      ctx_seed;                    // Seed для генерации адресов
-global int      ctx_is_enabled;              // Включена ли фабрика
-global slice    ctx_admin;                   // Адрес администратора
-global slice    ctx_fee_address;             // Адрес для комиссий
-global int      ctx_buy_fee_numerator;       // Числитель комиссии за покупку
-global int      ctx_sell_fee_numerator;      // Числитель комиссии за продажу
-global int      ctx_trade_fee_denominator;   // Знаменатель комиссий
-global cell     ctx_event_code;              // Код контракта события
-global cell     ctx_wallet_code;             // Код кошелька токенов
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="kc">global</span><span class="w"> </span><span class="kt">int</span><span class="w">      </span><span class="nv">ctx_seed</span><span class="p">;</span><span class="w">                    </span><span class="nv">//</span><span class="w"> </span><span class="nv">Seed</span><span class="w"> </span><span class="nv">для</span><span class="w"> </span><span class="nv">генерации</span><span class="w"> </span><span class="nv">адресов</span>
+<span class="kc">global</span><span class="w"> </span><span class="kt">int</span><span class="w">      </span><span class="nv">ctx_is_enabled</span><span class="p">;</span><span class="w">              </span><span class="nv">//</span><span class="w"> </span><span class="nv">Включена</span><span class="w"> </span><span class="nv">ли</span><span class="w"> </span><span class="nv">фабрика</span>
+<span class="kc">global</span><span class="w"> </span><span class="kt">slice</span><span class="w">    </span><span class="nv">ctx_admin</span><span class="p">;</span><span class="w">                   </span><span class="nv">//</span><span class="w"> </span><span class="nv">Адрес</span><span class="w"> </span><span class="nv">администратора</span>
+<span class="kc">global</span><span class="w"> </span><span class="kt">slice</span><span class="w">    </span><span class="nv">ctx_fee_address</span><span class="p">;</span><span class="w">             </span><span class="nv">//</span><span class="w"> </span><span class="nv">Адрес</span><span class="w"> </span><span class="nv">для</span><span class="w"> </span><span class="nv">комиссий</span>
+<span class="kc">global</span><span class="w"> </span><span class="kt">int</span><span class="w">      </span><span class="nv">ctx_buy_fee_numerator</span><span class="p">;</span><span class="w">       </span><span class="nv">//</span><span class="w"> </span><span class="nv">Числитель</span><span class="w"> </span><span class="nv">комиссии</span><span class="w"> </span><span class="nv">за</span><span class="w"> </span><span class="nv">покупку</span>
+<span class="kc">global</span><span class="w"> </span><span class="kt">int</span><span class="w">      </span><span class="nv">ctx_sell_fee_numerator</span><span class="p">;</span><span class="w">      </span><span class="nv">//</span><span class="w"> </span><span class="nv">Числитель</span><span class="w"> </span><span class="nv">комиссии</span><span class="w"> </span><span class="nv">за</span><span class="w"> </span><span class="nv">продажу</span>
+<span class="kc">global</span><span class="w"> </span><span class="kt">int</span><span class="w">      </span><span class="nv">ctx_trade_fee_denominator</span><span class="p">;</span><span class="w">   </span><span class="nv">//</span><span class="w"> </span><span class="nv">Знаменатель</span><span class="w"> </span><span class="nv">комиссий</span>
+<span class="kc">global</span><span class="w"> </span><span class="kt">cell</span><span class="w">     </span><span class="nv">ctx_event_code</span><span class="p">;</span><span class="w">              </span><span class="nv">//</span><span class="w"> </span><span class="nv">Код</span><span class="w"> </span><span class="nv">контракта</span><span class="w"> </span><span class="nv">события</span>
+<span class="kc">global</span><span class="w"> </span><span class="kt">cell</span><span class="w">     </span><span class="nv">ctx_wallet_code</span><span class="p">;</span><span class="w">             </span><span class="nv">//</span><span class="w"> </span><span class="nv">Код</span><span class="w"> </span><span class="nv">кошелька</span><span class="w"> </span><span class="nv">токенов</span>
+</code></pre></div>
+
 <p><strong>Основные операции</strong>:
 - <code>deploy_event</code> - Создание нового события
 - <code>enable_factory</code> - Включение/отключение фабрики</p>
@@ -314,13 +336,14 @@ global cell     ctx_wallet_code;             // Код кошелька токе
 - Расчет цен по LMSR
 - Определение победителя</p>
 <p><strong>Ключевые данные</strong>:</p>
-<pre><code class="language-func">global int ctx_initial_liq;        // Начальная ликвидность
-global int ctx_current_liq;        // Текущая ликвидность
-global int ctx_q1_supply;          // Количество токенов YES
-global int ctx_q2_supply;          // Количество токенов NO
-global int ctx_winner;             // Победитель (если определен)
-global int ctx_trading_enabled;    // Включена ли торговля
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="kc">global</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nv">ctx_initial_liq</span><span class="p">;</span><span class="w">        </span><span class="nv">//</span><span class="w"> </span><span class="nv">Начальная</span><span class="w"> </span><span class="nv">ликвидность</span>
+<span class="kc">global</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nv">ctx_current_liq</span><span class="p">;</span><span class="w">        </span><span class="nv">//</span><span class="w"> </span><span class="nv">Текущая</span><span class="w"> </span><span class="nv">ликвидность</span>
+<span class="kc">global</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nv">ctx_q1_supply</span><span class="p">;</span><span class="w">          </span><span class="nv">//</span><span class="w"> </span><span class="nv">Количество</span><span class="w"> </span><span class="nv">токенов</span><span class="w"> </span><span class="nv">YES</span>
+<span class="kc">global</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nv">ctx_q2_supply</span><span class="p">;</span><span class="w">          </span><span class="nv">//</span><span class="w"> </span><span class="nv">Количество</span><span class="w"> </span><span class="nv">токенов</span><span class="w"> </span><span class="nv">NO</span>
+<span class="kc">global</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nv">ctx_winner</span><span class="p">;</span><span class="w">             </span><span class="nv">//</span><span class="w"> </span><span class="nv">Победитель</span><span class="w"> </span><span class="p">(</span><span class="nv">если</span><span class="w"> </span><span class="nv">определен</span><span class="p">)</span>
+<span class="kc">global</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nv">ctx_trading_enabled</span><span class="p">;</span><span class="w">    </span><span class="nv">//</span><span class="w"> </span><span class="nv">Включена</span><span class="w"> </span><span class="nv">ли</span><span class="w"> </span><span class="nv">торговля</span>
+</code></pre></div>
+
 <p><strong>Основные операции</strong>:
 - <code>buy</code> - Покупка токенов
 - <code>sell</code> - Продажа токенов
@@ -334,74 +357,82 @@ global int ctx_trading_enabled;    // Включена ли торговля
 - Обработка переводов токенов
 - Продажа токенов обратно в событие</p>
 <p><strong>Ключевые данные</strong>:</p>
-<pre><code class="language-func">int yes_or_no;                    // Тип токена (YES/NO)
-int balance;                      // Баланс токенов
-slice owner_address;              // Адрес владельца
-slice jetton_master_address;      // Адрес мастер-контракта
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nv">yes_or_no</span><span class="p">;</span><span class="w">                    </span><span class="nv">//</span><span class="w"> </span><span class="nv">Тип</span><span class="w"> </span><span class="nv">токена</span><span class="w"> </span><span class="p">(</span><span class="nv">YES/NO</span><span class="p">)</span>
+<span class="kt">int</span><span class="w"> </span><span class="nv">balance</span><span class="p">;</span><span class="w">                      </span><span class="nv">//</span><span class="w"> </span><span class="nv">Баланс</span><span class="w"> </span><span class="nv">токенов</span>
+<span class="kt">slice</span><span class="w"> </span><span class="nv">owner_address</span><span class="p">;</span><span class="w">              </span><span class="nv">//</span><span class="w"> </span><span class="nv">Адрес</span><span class="w"> </span><span class="nv">владельца</span>
+<span class="kt">slice</span><span class="w"> </span><span class="nv">jetton_master_address</span><span class="p">;</span><span class="w">      </span><span class="nv">//</span><span class="w"> </span><span class="nv">Адрес</span><span class="w"> </span><span class="nv">мастер-контракта</span>
+</code></pre></div>
+
 <h3 id="4-lmsr">4. Математический модуль (LMSR)</h3>
 <p><strong>Logarithmic Market Scoring Rule</strong> - алгоритм для автоматического ценообразования.</p>
 <p><strong>Основные функции</strong>:</p>
 <h4 id="calc_token_priceb-q1-q2"><code>calc_token_price(b, q1, q2)</code></h4>
 <p>Расчет текущей цены токена:</p>
-<pre><code>price = exp(q1/b) / (exp(q1/b) + exp(q2/b))
-</code></pre>
+<div class="codehilite"><pre><span></span><code>price = exp(q1/b) / (exp(q1/b) + exp(q2/b))
+</code></pre></div>
+
 <h4 id="calc_coins_for_usdtusdt_amount-b-q1-q2"><code>calc_coins_for_usdt(usdt_amount, b, q1, q2)</code></h4>
 <p>Расчет количества токенов за USDT:</p>
-<pre><code>coins = b * ln(exp(usdt/b) + exp((q2-q1)/b) * (exp(usdt/b) - 1))
-</code></pre>
+<div class="codehilite"><pre><span></span><code>coins = b <span class="gs">* ln(exp(usdt/b) + exp((q2-q1)/b) *</span> (exp(usdt/b) - 1))
+</code></pre></div>
+
 <h4 id="calc_usdt_for_coinstoken_amount-b-q1-q2"><code>calc_usdt_for_coins(token_amount, b, q1, q2)</code></h4>
 <p>Расчет USDT за токены (обратная операция).</p>
 <h2 id="_10">Взаимодействие с системой</h2>
 <h3 id="1">1. Создание события</h3>
-<pre><code class="language-typescript">// 1. Развертывание фабрики
-const factory = Factory.createFromConfig({
-    admin: adminAddress,
-    feeAddress: feeAddress,
-    buyFeeNumerator: 1,
-    sellFeeNumerator: 1,
-    feeDenominator: 100,
-    isEnabled: true,
-    // ... другие параметры
-}, factoryCode);
+<div class="codehilite"><pre><span></span><code><span class="c1">// 1. Развертывание фабрики</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Factory</span><span class="p">.</span><span class="nx">createFromConfig</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">admin</span><span class="o">:</span><span class="w"> </span><span class="kt">adminAddress</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">feeAddress</span><span class="o">:</span><span class="w"> </span><span class="kt">feeAddress</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">buyFeeNumerator</span><span class="o">:</span><span class="w"> </span><span class="kt">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">sellFeeNumerator</span><span class="o">:</span><span class="w"> </span><span class="kt">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">feeDenominator</span><span class="o">:</span><span class="w"> </span><span class="kt">100</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">isEnabled</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<span class="w">    </span><span class="c1">// ... другие параметры</span>
+<span class="p">},</span><span class="w"> </span><span class="nx">factoryCode</span><span class="p">);</span>
 
-// 2. Создание события
-await factory.sendDeployEvent(sender, {
-    name: &quot;Bitcoin price &gt; $100k by 2024&quot;,
-    description: &quot;Will Bitcoin reach $100,000 by end of 2024?&quot;,
-    extraMetadata: {}
-});
-</code></pre>
+<span class="c1">// 2. Создание события</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">factory</span><span class="p">.</span><span class="nx">sendDeployEvent</span><span class="p">(</span><span class="nx">sender</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Bitcoin price &gt; $100k by 2024&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Will Bitcoin reach $100,000 by end of 2024?&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">extraMetadata</span><span class="o">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">});</span>
+</code></pre></div>
+
 <h3 id="2">2. Добавление ликвидности</h3>
-<pre><code class="language-typescript">// Администратор добавляет начальную ликвидность
-await event.sendAddLiquidity(sender, {
-    liquidityAmount: toNanoUSDT(&quot;1000&quot;) // 1000 USDT
-}, usdtMinterAddress);
-</code></pre>
-<h3 id="3">3. Покупка токенов</h3>
-<pre><code class="language-typescript">// Пользователь покупает токены YES
-await event.sendBuy(sender, {
-    yesOrNo: true,                    // YES токены
-    usdtAmount: toNanoUSDT(&quot;100&quot;),    // 100 USDT
-    minReceive: 0n,                   // Минимальное количество токенов
-}, usdtMinterAddress);
-</code></pre>
-<h3 id="4">4. Продажа токенов</h3>
-<pre><code class="language-typescript">// Получение кошелька пользователя
-const wallet = await event.getUserWallet(provider, userAddress, true);
+<div class="codehilite"><pre><span></span><code><span class="c1">// Администратор добавляет начальную ликвидность</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">sendAddLiquidity</span><span class="p">(</span><span class="nx">sender</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">liquidityAmount</span><span class="o">:</span><span class="w"> </span><span class="kt">toNanoUSDT</span><span class="p">(</span><span class="s2">&quot;1000&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// 1000 USDT</span>
+<span class="p">},</span><span class="w"> </span><span class="nx">usdtMinterAddress</span><span class="p">);</span>
+</code></pre></div>
 
-// Продажа токенов
-await wallet.sendSellCoins(sender, {
-    amount: 1000n,        // Количество токенов
-    minReceive: 0n,       // Минимальная сумма USDT
-});
-</code></pre>
+<h3 id="3">3. Покупка токенов</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Пользователь покупает токены YES</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">sendBuy</span><span class="p">(</span><span class="nx">sender</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">yesOrNo</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span><span class="w">                    </span><span class="c1">// YES токены</span>
+<span class="w">    </span><span class="nx">usdtAmount</span><span class="o">:</span><span class="w"> </span><span class="kt">toNanoUSDT</span><span class="p">(</span><span class="s2">&quot;100&quot;</span><span class="p">),</span><span class="w">    </span><span class="c1">// 100 USDT</span>
+<span class="w">    </span><span class="nx">minReceive</span><span class="o">:</span><span class="w"> </span><span class="kt">0n</span><span class="p">,</span><span class="w">                   </span><span class="c1">// Минимальное количество токенов</span>
+<span class="p">},</span><span class="w"> </span><span class="nx">usdtMinterAddress</span><span class="p">);</span>
+</code></pre></div>
+
+<h3 id="4">4. Продажа токенов</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Получение кошелька пользователя</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">wallet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">getUserWallet</span><span class="p">(</span><span class="nx">provider</span><span class="p">,</span><span class="w"> </span><span class="nx">userAddress</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+
+<span class="c1">// Продажа токенов</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">wallet</span><span class="p">.</span><span class="nx">sendSellCoins</span><span class="p">(</span><span class="nx">sender</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">amount</span><span class="o">:</span><span class="w"> </span><span class="kt">1000n</span><span class="p">,</span><span class="w">        </span><span class="c1">// Количество токенов</span>
+<span class="w">    </span><span class="nx">minReceive</span><span class="o">:</span><span class="w"> </span><span class="kt">0n</span><span class="p">,</span><span class="w">       </span><span class="c1">// Минимальная сумма USDT</span>
+<span class="p">});</span>
+</code></pre></div>
+
 <h3 id="5">5. Определение победителя</h3>
-<pre><code class="language-typescript">// Администратор определяет победителя
-await event.sendSelectWinner(sender, {
-    yesOrNo: true  // YES выиграло
-});
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Администратор определяет победителя</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">sendSelectWinner</span><span class="p">(</span><span class="nx">sender</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">yesOrNo</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w">  </span><span class="c1">// YES выиграло</span>
+<span class="p">});</span>
+</code></pre></div>
+
 <h2 id="_11">Система комиссий</h2>
 <h3 id="_12">Структура комиссий:</h3>
 <ul>
@@ -434,56 +465,61 @@ await event.sendSelectWinner(sender, {
 </ul>
 <h2 id="_17">Утилиты и вспомогательные функции</h2>
 <h3 id="nanousdt">nanoUSDT конвертация:</h3>
-<pre><code class="language-typescript">// Конвертация USDT в nanoUSDT (1 USDT = 1,000,000 nanoUSDT)
-const nanoUSDT = toNanoUSDT(&quot;100.5&quot;);  // 100500000n
+<div class="codehilite"><pre><span></span><code><span class="c1">// Конвертация USDT в nanoUSDT (1 USDT = 1,000,000 nanoUSDT)</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">nanoUSDT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">toNanoUSDT</span><span class="p">(</span><span class="s2">&quot;100.5&quot;</span><span class="p">);</span><span class="w">  </span><span class="c1">// 100500000n</span>
 
-// Обратная конвертация
-const usdt = fromNanoUSDT(100500000n); // 100.5
-</code></pre>
+<span class="c1">// Обратная конвертация</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">usdt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fromNanoUSDT</span><span class="p">(</span><span class="mi">100500000n</span><span class="p">);</span><span class="w"> </span><span class="c1">// 100.5</span>
+</code></pre></div>
+
 <h3 id="_18">Константы:</h3>
-<pre><code class="language-typescript">export const Constants = {
-    EventDeploymentGas: toNano('0.05'),  // Газ для развертывания события
-    CoinBuyGas: toNano('0.08'),          // Газ для покупки
-    CoinSellGas: toNano('0.08'),         // Газ для продажи
-};
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">Constants</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">EventDeploymentGas</span><span class="o">:</span><span class="w"> </span><span class="kt">toNano</span><span class="p">(</span><span class="s1">&#39;0.05&#39;</span><span class="p">),</span><span class="w">  </span><span class="c1">// Газ для развертывания события</span>
+<span class="w">    </span><span class="nx">CoinBuyGas</span><span class="o">:</span><span class="w"> </span><span class="kt">toNano</span><span class="p">(</span><span class="s1">&#39;0.08&#39;</span><span class="p">),</span><span class="w">          </span><span class="c1">// Газ для покупки</span>
+<span class="w">    </span><span class="nx">CoinSellGas</span><span class="o">:</span><span class="w"> </span><span class="kt">toNano</span><span class="p">(</span><span class="s1">&#39;0.08&#39;</span><span class="p">),</span><span class="w">         </span><span class="c1">// Газ для продажи</span>
+<span class="p">};</span>
+</code></pre></div>
+
 <h2 id="_19">Тестирование</h2>
 <h3 id="_20">Запуск тестов:</h3>
-<pre><code class="language-bash">npm test
-# или
-yarn test
-</code></pre>
+<div class="codehilite"><pre><span></span><code>npm<span class="w"> </span><span class="nb">test</span>
+<span class="c1"># или</span>
+yarn<span class="w"> </span><span class="nb">test</span>
+</code></pre></div>
+
 <h3 id="_21">Структура тестов:</h3>
 <ul>
 <li><strong>Predict.spec.ts</strong> - Интеграционные тесты всей системы</li>
 <li><strong>Math.spec.ts</strong> - Тесты математических функций</li>
 </ul>
 <h3 id="_22">Пример теста:</h3>
-<pre><code class="language-typescript">it('should allow buying and selling tokens', async () =&gt; {
-    // Добавление ликвидности
-    await event.sendAddLiquidity(deployer.getSender(), {
-        liquidityAmount: toNanoUSDT(&quot;1000&quot;)
-    }, USDTMinter.address);
+<div class="codehilite"><pre><span></span><code><span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should allow buying and selling tokens&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Добавление ликвидности</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">sendAddLiquidity</span><span class="p">(</span><span class="nx">deployer</span><span class="p">.</span><span class="nx">getSender</span><span class="p">(),</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">liquidityAmount</span><span class="o">:</span><span class="w"> </span><span class="kt">toNanoUSDT</span><span class="p">(</span><span class="s2">&quot;1000&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="nx">USDTMinter</span><span class="p">.</span><span class="nx">address</span><span class="p">);</span>
 
-    // Покупка токенов
-    await event.sendBuy(trader.getSender(), {
-        yesOrNo: true,
-        usdtAmount: toNanoUSDT(&quot;100&quot;),
-        minReceive: 0n
-    }, USDTMinter.address);
+<span class="w">    </span><span class="c1">// Покупка токенов</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">sendBuy</span><span class="p">(</span><span class="nx">trader</span><span class="p">.</span><span class="nx">getSender</span><span class="p">(),</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">yesOrNo</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">usdtAmount</span><span class="o">:</span><span class="w"> </span><span class="kt">toNanoUSDT</span><span class="p">(</span><span class="s2">&quot;100&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="nx">minReceive</span><span class="o">:</span><span class="w"> </span><span class="kt">0n</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="nx">USDTMinter</span><span class="p">.</span><span class="nx">address</span><span class="p">);</span>
 
-    // Проверка результата
-    const wallet = await event.getUserWallet(provider, trader.address, true);
-    const balance = (await wallet.getData()).balance;
-    expect(balance).toBeGreaterThan(0n);
-});
-</code></pre>
+<span class="w">    </span><span class="c1">// Проверка результата</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">wallet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">getUserWallet</span><span class="p">(</span><span class="nx">provider</span><span class="p">,</span><span class="w"> </span><span class="nx">trader</span><span class="p">.</span><span class="nx">address</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">balance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">wallet</span><span class="p">.</span><span class="nx">getData</span><span class="p">()).</span><span class="nx">balance</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">expect</span><span class="p">(</span><span class="nx">balance</span><span class="p">).</span><span class="nx">toBeGreaterThan</span><span class="p">(</span><span class="mi">0n</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+
 <h2 id="_23">Развертывание</h2>
 <h3 id="_24">Запуск скриптов:</h3>
-<pre><code class="language-bash">npm run start
-# или
-yarn start
-</code></pre>
+<div class="codehilite"><pre><span></span><code>npm<span class="w"> </span>run<span class="w"> </span>start
+<span class="c1"># или</span>
+yarn<span class="w"> </span>start
+</code></pre></div>
+
 <h3 id="_25">Доступные скрипты:</h3>
 <ul>
 <li><code>deployFactory</code> - Развертывание фабрики</li>
@@ -515,6 +551,9 @@ yarn start
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="1_%D0%93%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F/" class="btn btn-neutral float-right" title="1 Главная">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 
@@ -537,6 +576,8 @@ yarn start
     
     
     
+      <span><a href="1_%D0%93%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
   </span>
 </div>
     <script src="js/jquery-3.6.0.min.js"></script>
@@ -554,6 +595,6 @@ yarn start
 </html>
 
 <!--
-MkDocs version : 1.5.3
-Build Date UTC : 2025-09-13 00:38:10.826075+00:00
+MkDocs version : 1.6.1
+Build Date UTC : 2025-09-16 15:46:07.017024+00:00
 -->

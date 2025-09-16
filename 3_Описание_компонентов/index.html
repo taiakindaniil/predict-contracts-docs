@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Daniel Taiakin" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>3 Описание компонентов - Predict Contracts</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "3 \u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u043a\u043e\u043c\u043f\u043e\u043d\u0435\u043d\u0442\u043e\u0432";
+        var mkdocs_page_input_path = "3_\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435_\u043a\u043e\u043c\u043f\u043e\u043d\u0435\u043d\u0442\u043e\u0432.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Predict Contracts
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Predict Contracts</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../1_%D0%93%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F/">1 Главная</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../2_%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0_%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0/">2 Структура проекта</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">3 Описание компонентов</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-factory-contract">1. Factory Contract</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-event-contract">2. Event Contract</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-eventwallet-contract">3. EventWallet Contract</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-lmsr">4. Математический модуль (LMSR)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#calc_token_priceb-q1-q2">calc_token_price(b, q1, q2)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#calc_coins_for_usdtusdt_amount-b-q1-q2">calc_coins_for_usdt(usdt_amount, b, q1, q2)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#calc_usdt_for_coinstoken_amount-b-q1-q2">calc_usdt_for_coins(token_amount, b, q1, q2)</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../4_%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5/">4 Тестирование</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../5_%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D0%B5/">5 Взаимодействие</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Predict Contracts</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">3 Описание компонентов</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="_1">Описание компонентов</h2>
+<h3 id="1-factory-contract">1. Factory Contract</h3>
+<p><strong>Назначение</strong>: Центральный контракт для создания и управления событиями.</p>
+<p><strong>Основные функции</strong>:</p>
+<ul>
+<li>Создание новых событий</li>
+<li>Управление настройками комиссий</li>
+<li>Включение/отключение системы</li>
+</ul>
+<p><strong>Ключевые данные</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kc">global</span><span class="w"> </span><span class="kt">int</span><span class="w">      </span><span class="nv">ctx_seed</span><span class="p">;</span><span class="w">                    </span><span class="nv">//</span><span class="w"> </span><span class="nv">Seed</span><span class="w"> </span><span class="nv">для</span><span class="w"> </span><span class="nv">генерации</span><span class="w"> </span><span class="nv">адресов</span>
+<span class="kc">global</span><span class="w"> </span><span class="kt">int</span><span class="w">      </span><span class="nv">ctx_is_enabled</span><span class="p">;</span><span class="w">              </span><span class="nv">//</span><span class="w"> </span><span class="nv">Включена</span><span class="w"> </span><span class="nv">ли</span><span class="w"> </span><span class="nv">фабрика</span>
+<span class="kc">global</span><span class="w"> </span><span class="kt">slice</span><span class="w">    </span><span class="nv">ctx_admin</span><span class="p">;</span><span class="w">                   </span><span class="nv">//</span><span class="w"> </span><span class="nv">Адрес</span><span class="w"> </span><span class="nv">администратора</span>
+<span class="kc">global</span><span class="w"> </span><span class="kt">slice</span><span class="w">    </span><span class="nv">ctx_fee_address</span><span class="p">;</span><span class="w">             </span><span class="nv">//</span><span class="w"> </span><span class="nv">Адрес</span><span class="w"> </span><span class="nv">для</span><span class="w"> </span><span class="nv">комиссий</span>
+<span class="kc">global</span><span class="w"> </span><span class="kt">int</span><span class="w">      </span><span class="nv">ctx_buy_fee_numerator</span><span class="p">;</span><span class="w">       </span><span class="nv">//</span><span class="w"> </span><span class="nv">Числитель</span><span class="w"> </span><span class="nv">комиссии</span><span class="w"> </span><span class="nv">за</span><span class="w"> </span><span class="nv">покупку</span>
+<span class="kc">global</span><span class="w"> </span><span class="kt">int</span><span class="w">      </span><span class="nv">ctx_sell_fee_numerator</span><span class="p">;</span><span class="w">      </span><span class="nv">//</span><span class="w"> </span><span class="nv">Числитель</span><span class="w"> </span><span class="nv">комиссии</span><span class="w"> </span><span class="nv">за</span><span class="w"> </span><span class="nv">продажу</span>
+<span class="kc">global</span><span class="w"> </span><span class="kt">int</span><span class="w">      </span><span class="nv">ctx_trade_fee_denominator</span><span class="p">;</span><span class="w">   </span><span class="nv">//</span><span class="w"> </span><span class="nv">Знаменатель</span><span class="w"> </span><span class="nv">комиссий</span>
+<span class="kc">global</span><span class="w"> </span><span class="kt">cell</span><span class="w">     </span><span class="nv">ctx_event_code</span><span class="p">;</span><span class="w">              </span><span class="nv">//</span><span class="w"> </span><span class="nv">Код</span><span class="w"> </span><span class="nv">контракта</span><span class="w"> </span><span class="nv">события</span>
+<span class="kc">global</span><span class="w"> </span><span class="kt">cell</span><span class="w">     </span><span class="nv">ctx_wallet_code</span><span class="p">;</span><span class="w">             </span><span class="nv">//</span><span class="w"> </span><span class="nv">Код</span><span class="w"> </span><span class="nv">кошелька</span><span class="w"> </span><span class="nv">токенов</span>
+</code></pre></div>
+
+<p><strong>Основные операции</strong>:
+- <code>deploy_event</code> - Создание нового события
+- <code>enable_factory</code> - Включение/отключение фабрики</p>
+<h3 id="2-event-contract">2. Event Contract</h3>
+<p><strong>Назначение</strong>: Управление конкретным предсказательным событием.</p>
+<p><strong>Основные функции</strong>:</p>
+<ul>
+<li>Торговля токенами YES/NO</li>
+<li>Управление ликвидностью</li>
+<li>Расчет цен по LMSR</li>
+<li>Определение победителя</li>
+</ul>
+<p><strong>Ключевые данные</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kc">global</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nv">ctx_initial_liq</span><span class="p">;</span><span class="w">        </span><span class="nv">//</span><span class="w"> </span><span class="nv">Начальная</span><span class="w"> </span><span class="nv">ликвидность</span>
+<span class="kc">global</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nv">ctx_current_liq</span><span class="p">;</span><span class="w">        </span><span class="nv">//</span><span class="w"> </span><span class="nv">Текущая</span><span class="w"> </span><span class="nv">ликвидность</span>
+<span class="kc">global</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nv">ctx_q1_supply</span><span class="p">;</span><span class="w">          </span><span class="nv">//</span><span class="w"> </span><span class="nv">Количество</span><span class="w"> </span><span class="nv">токенов</span><span class="w"> </span><span class="nv">YES</span>
+<span class="kc">global</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nv">ctx_q2_supply</span><span class="p">;</span><span class="w">          </span><span class="nv">//</span><span class="w"> </span><span class="nv">Количество</span><span class="w"> </span><span class="nv">токенов</span><span class="w"> </span><span class="nv">NO</span>
+<span class="kc">global</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nv">ctx_winner</span><span class="p">;</span><span class="w">             </span><span class="nv">//</span><span class="w"> </span><span class="nv">Победитель</span><span class="w"> </span><span class="p">(</span><span class="nv">если</span><span class="w"> </span><span class="nv">определен</span><span class="p">)</span>
+<span class="kc">global</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nv">ctx_trading_enabled</span><span class="p">;</span><span class="w">    </span><span class="nv">//</span><span class="w"> </span><span class="nv">Включена</span><span class="w"> </span><span class="nv">ли</span><span class="w"> </span><span class="nv">торговля</span>
+</code></pre></div>
+
+<p><strong>Основные операции</strong>:</p>
+<ul>
+<li><code>buy</code> - Покупка токенов</li>
+<li><code>sell</code> - Продажа токенов</li>
+<li><code>add_liquidity</code> - Добавление ликвидности</li>
+<li><code>withdraw_liquidity</code> - Вывод ликвидности</li>
+<li><code>select_winner</code> - Определение победителя</li>
+</ul>
+<h3 id="3-eventwallet-contract">3. EventWallet Contract</h3>
+<p><strong>Назначение</strong>: Кошелек пользователя для хранения токенов события.</p>
+<p><strong>Основные функции</strong>:</p>
+<ul>
+<li>Хранение токенов YES/NO пользователя</li>
+<li>Обработка переводов токенов</li>
+<li>Продажа токенов обратно в событие</li>
+</ul>
+<p><strong>Ключевые данные</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nv">yes_or_no</span><span class="p">;</span><span class="w">                    </span><span class="nv">//</span><span class="w"> </span><span class="nv">Тип</span><span class="w"> </span><span class="nv">токена</span><span class="w"> </span><span class="p">(</span><span class="nv">YES/NO</span><span class="p">)</span>
+<span class="kt">int</span><span class="w"> </span><span class="nv">balance</span><span class="p">;</span><span class="w">                      </span><span class="nv">//</span><span class="w"> </span><span class="nv">Баланс</span><span class="w"> </span><span class="nv">токенов</span>
+<span class="kt">slice</span><span class="w"> </span><span class="nv">owner_address</span><span class="p">;</span><span class="w">              </span><span class="nv">//</span><span class="w"> </span><span class="nv">Адрес</span><span class="w"> </span><span class="nv">владельца</span>
+<span class="kt">slice</span><span class="w"> </span><span class="nv">jetton_master_address</span><span class="p">;</span><span class="w">      </span><span class="nv">//</span><span class="w"> </span><span class="nv">Адрес</span><span class="w"> </span><span class="nv">мастер-контракта</span>
+</code></pre></div>
+
+<h3 id="4-lmsr">4. Математический модуль (LMSR)</h3>
+<p><strong>Logarithmic Market Scoring Rule</strong> - алгоритм для автоматического ценообразования.</p>
+<p><strong>Основные функции</strong>:</p>
+<h4 id="calc_token_priceb-q1-q2"><code>calc_token_price(b, q1, q2)</code></h4>
+<p>Расчет текущей цены токена:</p>
+<div class="codehilite"><pre><span></span><code>price = exp(q1/b) / (exp(q1/b) + exp(q2/b))
+</code></pre></div>
+
+<h4 id="calc_coins_for_usdtusdt_amount-b-q1-q2"><code>calc_coins_for_usdt(usdt_amount, b, q1, q2)</code></h4>
+<p>Расчет количества токенов за USDT:</p>
+<div class="codehilite"><pre><span></span><code>coins = b <span class="gs">* ln(exp(usdt/b) + exp((q2-q1)/b) *</span> (exp(usdt/b) - 1))
+</code></pre></div>
+
+<h4 id="calc_usdt_for_coinstoken_amount-b-q1-q2"><code>calc_usdt_for_coins(token_amount, b, q1, q2)</code></h4>
+<p>Расчет USDT за токены (обратная операция).</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>При запросе мат. функций возвращается целочисленное значение с <strong>шестью нулями</strong>.
+Например, вещественное число <code>0.5</code> будет возвращено как <code>500000</code>.</p>
+<p>Еще примеры:</p>
+<ul>
+<li><code>10</code> =&gt; <code>10000000</code></li>
+<li><code>42</code> =&gt; <code>42000000</code></li>
+<li><code>12.5</code> =&gt; <code>12500000</code></li>
+</ul>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../2_%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0_%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0/" class="btn btn-neutral float-left" title="2 Структура проекта"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../4_%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5/" class="btn btn-neutral float-right" title="4 Тестирование">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../2_%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0_%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../4_%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
