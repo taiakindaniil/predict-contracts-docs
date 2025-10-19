@@ -70,7 +70,11 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#_3">Настройка</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_4">Взамодействие</a>
+    <li class="toctree-l2"><a class="reference internal" href="#c-api">Взамодействие c API</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1">1. Создание события</a>
+    </li>
+        </ul>
     </li>
     </ul>
                 </li>
@@ -109,7 +113,61 @@
 </ul>
 <h3 id="_3">Настройка</h3>
 <p>Перед тем, как настраивать релеер, убедитесь, что вы задеплоили контракт <code>Adapter</code> в сети Polygon и контракт <code>Factory</code> в сети TON.</p>
-<h3 id="_4">Взамодействие</h3>
+<h3 id="c-api">Взамодействие c API</h3>
+<h4 id="1">1. Создание события</h4>
+<p><strong>POST</strong> <code>/api/v1/events/create</code></p>
+<p><strong>Описание</strong>
+Добавляет событие в очередь на деплой в TON. После успешного деплоя запускается процесс инициализации вопроса в UMA (Polygon).</p>
+<p><strong>Тело запроса (JSON)</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;clientId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;optional-client-id&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Название события&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Описание события (опционально)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;imageUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://example.com/image.png&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;symbol&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EVT&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;socialLinks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://x.com/project&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;https://t.me/channel&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;extraMetadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sports&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;football&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;world-cup&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;ancillaryData&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;q: title: Will Metamask launch a token in 2025?, description: This market will resolve to &#39;Yes&#39; if Metamask officially launches a token by December 31, 2025, 11:59 PM ET. Otherwise, this market will resolve to &#39;No&#39;. The token must be actively and publicly transferable and tradable. Announcements alone do not qualify The primary resolution source for this market will be information from Metamask, however a consensus of credible reporting will also be used. market_id: 704067 res_data: p1: 0, p2: 1, p3: 0.5. Where p1 corresponds to No, p2 to Yes, p3 to unknown/50-50.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;rewardToken&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0x41e94eb019c0762f9bfcf9fb1e58725bfb0e7582&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;reward&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.1&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;proposalBond&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.01&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;liveness&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Поля</strong></p>
+<ul>
+<li><code>clientId</code> <em>(string, optional)</em> — ID клиента/источника события.</li>
+<li><code>name</code> <em>(string, required)</em> — название события.</li>
+<li><code>description</code> <em>(string, optional)</em> — описание события.</li>
+<li><code>imageUrl</code> <em>(string, optional)</em> — URL изображения события.</li>
+<li><code>symbol</code> <em>(string, required)</em> — символ/тикер токена события.</li>
+<li><code>socialLinks</code> <em>(array of strings, optional)</em> — список ссылок на соцсети.</li>
+<li><code>extraMetadata</code> <em>(object, optional)</em> — произвольные дополнительные метаданные.</li>
+<li><code>ancillaryData</code> <em>(string, required)</em> – полный запрос в UMA.</li>
+<li><code>rewardToken</code> <em>(string, required)</em> – адрес токена награды и залога.</li>
+<li><code>reward</code> <em>(number, required)</em> – награда, которую получит proposer.</li>
+<li><code>proposalBond</code> <em>(number, required)</em> – ставка, которую делают участники протокола UMA, чтобы предложить ответ.</li>
+<li><code>liveness</code> <em>(number, optional)</em> – время в секундах, в течение которого могут оспорить предложенное решение.</li>
+</ul>
+<p><strong>Ответы</strong></p>
+<ul>
+<li><strong>202 Accepted</strong></li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;queued&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1685737472763-0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;create_event&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<ul>
+<li><strong>400 Bad Request</strong> – невалидные данные</li>
+<li><strong>500 Internal Server Error</strong> – ошибка добавления в очередь</li>
+</ul>
 <p>Представлен пример взаимодейсвтия с релеером через REST API модель посредством запросов через <code>curl</code>.</p>
 <div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:3000/api/v1/events/create<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
